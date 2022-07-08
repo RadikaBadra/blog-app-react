@@ -7,7 +7,7 @@ import Register from './pages/auth/register';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename='/blog-app-react/'>
         <App />
     </BrowserRouter>
   </React.StrictMode>
