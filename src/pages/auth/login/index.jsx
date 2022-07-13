@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api";
-import  AuthContext  from "../../../AuthProvider";
+import AuthContext from "../../../AuthProvider";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -22,7 +22,7 @@ export default function Login() {
       });
       console.log(response);
       if (response.data.token) {
-        isLogin(response.data.token, response.data.author_id);
+        isLogin(response.data.token, response.data.author_id, response.data.name);
       }
     } catch (err) {
       alert(err);
@@ -34,7 +34,6 @@ export default function Login() {
       <div class="w-full md:w-1/2 lg:w-1/3 mx-auto my-12">
         <h1 class="text-lg font-bold">Login</h1>
         <form class="flex flex-col mt-4" onSubmit={(e) => handleLogin(e)}>
-
           <input
             type="email"
             name="email"
@@ -62,7 +61,9 @@ export default function Login() {
           <div class="flex flex-col items-center mt-5">
             <p class="mt-1 text-xs font-light text-gray-500">
               Register already?
-              <a class="ml-1 font-medium text-blue-400"><Link to="/register">Sign up</Link></a>
+              <a class="ml-1 font-medium text-blue-400">
+                <Link to="/register">Sign up</Link>
+              </a>
             </p>
           </div>
         </form>

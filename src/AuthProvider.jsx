@@ -6,30 +6,35 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token") || null);
-    const [user, setUser] = useState(localStorage.getItem("user") || null);
+    const [userID, setUserID] = useState(localStorage.getItem("userID") || null);
+    const [userName, setUserName] = useState(localStorage.getItem("userName") || null);
     const navigate = useNavigate();
 
-    function isLogin(token, user){
+    function isLogin(token, userID, userName) {
         localStorage.setItem("token", token);
-        localStorage.setItem("user", user);
+        localStorage.setItem("userID", userID);
+        localStorage.setItem("userName", userName);
+       
 
         setToken(token);
-        setUser(user);
+        setUserID(userID);
+        setUserName(userName);
         navigate("/");
     }
 
     function isLogout(){
         localStorage.removeItem("token");
-        localStorage.removeItem("user");
 
         setToken(null);
-        setUser(null);
+        setUserID(null);
+        setUserName(null);
         navigate("/login");
     }
 
     const data = {
         token,
-        user,
+        userID,
+        userName,
         isLogin,
         isLogout
     }

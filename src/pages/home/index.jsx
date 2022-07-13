@@ -1,13 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Sidebar from "../../component/sidebar";
 import { FaBars } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { Link } from "react-router-dom";
 import api from "../../api";
+import AuthContext from "../../AuthProvider";
+
 
 
 export default function Home() {
   const [showBar, setShowBar] = useState(false);
   const [blogs, setBlogs] = useState([]);
+
+  const data = useContext(AuthContext);
+  console.log(data);
 
   async function getBlog(e){
     try {
@@ -61,8 +67,12 @@ export default function Home() {
                 blogs.map((blog) => {
                   return (
                     <div className="bg-white p-4">
+                      <h1 key={blog.id}>{blog.id}</h1>
                       <h1 className="text-2xl">{blog.title}</h1>
                       <p className="text-xl">{blog.content}</p>
+                      <Link to={`/readblog/${blog.id}`}>
+                        <button>baca</button>
+                      </Link>
                     </div>
                   )
                 }

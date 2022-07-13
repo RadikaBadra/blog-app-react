@@ -4,18 +4,18 @@ import { Navigate } from "react-router-dom";
 
 
 export const ProtectedLogin = ({children}) => {
-    const { token, user } = useContext(AuthContext);
+    const { token} = useContext(AuthContext);
     
-    if(!token && !user){
+    if(!token){
         return <Navigate to="/login" />
     }
     return children;
 }
 
 export const ProtectedHome = ({children}) => {
-    const { token, user } = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
 
-    if(token && user){
+    if(token){
         return <Navigate to="/"/>
     }
     return children;

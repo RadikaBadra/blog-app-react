@@ -11,7 +11,7 @@ export default function Register() {
     confirm_password: "",
   });
 
-  const isLogin = useContext(AuthContext);
+  const { isLogin } = useContext(AuthContext);
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -23,9 +23,8 @@ export default function Register() {
         },
         body: JSON.stringify(form),
       });
-      console.log(response);
       if (response.data.token) {
-        isLogin(response.data.token, response.data.user);
+        isLogin(response.data.token, response.data.author_id, response.data.name);
       }
     } catch (err) {
       alert(err);
